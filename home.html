@@ -29,7 +29,7 @@
     <!-- Website Header Section -->
     <header>
         <!-- Website Navbar -->
-        <nav class="flex flex-col gap-5 md:gap-0 md:flex-row justify-between items-center md:px-10 lg:px-20 py-[17px] bg-white shadow">
+        <nav class="flex flex-col gap-5 md:gap-0 md:flex-row justify-between items-center px-2 md:px-10 lg:px-20 py-[17px] bg-white shadow">
             <div>
                 <h1 class="flex items-center gap-1"><img src="./assets/github-logo.png" alt="logo" class="w-9"><span class="text-2xl font-semibold">GitHub Issues Tracker</span></h1>
             </div>
@@ -51,5 +51,15 @@
             </div>
         </nav>
     </header>
+
+    <main class="max-w-11/12 md:max-w-11/12 lg:max-w-9/12 mx-auto mt-5 md:mt-8 lg:mt-[60px]">
+        <section>
+            <div class="bg-white shadow rounded-md p-2 md:p-4 lg:p-6 space-x-2 flex justify-between md:justify-start items-center">
+                <button class="btn btn-primary w-[100px] md:w-[120px]">All</button>
+                <button class="btn w-[100px] md:w-[120px]">Open</button>
+                <button class="btn w-[100px] md:w-[120px]">Closed</button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
