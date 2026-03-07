@@ -53,11 +53,50 @@
     </header>
 
     <main class="max-w-11/12 md:max-w-11/12 lg:max-w-9/12 mx-auto mt-5 md:mt-8 lg:mt-[60px]">
-        <section>
-            <div class="bg-white shadow rounded-md p-2 md:p-4 lg:p-6 space-x-2 flex justify-between md:justify-start items-center">
-                <button id="all-btn" class="filter-btn btn btn-primary w-[100px] md:w-[120px]">All</button>
-                <button id="open-btn" class="filter-btn btn w-[100px] md:w-[120px]">Open</button>
-                <button id="closed-btn" class="filter-btn btn w-[100px] md:w-[120px]">Closed</button>
+        <!-- Issues Filtering Tab -->
+        <section class="bg-white shadow rounded-md p-2 md:p-4 lg:p-6 space-x-2 flex justify-between md:justify-start items-center">
+            <button id="all-btn" class="filter-btn btn btn-primary w-[100px] md:w-[120px]">All</button>
+            <button id="open-btn" class="filter-btn btn w-[100px] md:w-[120px]">Open</button>
+            <button id="closed-btn" class="filter-btn btn w-[100px] md:w-[120px]">Closed</button>
+        </section>
+
+        <!--  -->
+        <section class="mt-4">
+            <div class="flex justify-between bg-white shadow p-6 rounded-t-md border-b-2 border-[#e4e4e7]">
+                <div class="flex items-center gap-2">
+                    <div>
+                        <img class="bg-[#ECE4FF] p-[9px] rounded-full" src="./assets/Aperture.png" alt="Aperture">
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-semibold"><span id="total-issues">0</span> Issues</h3>
+                        <p>Track and manage your project issues</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                    <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full bg-[#00A96E] inline-block"> </span><span>Open</span></p>
+                    <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full bg-[#A855F7] inline-block"></span> <span>Closed</span></p>
+                </div>
+            </div>
+            <!-- Cards -->
+            <div id="issues-card-container" class="bg-white shadow p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+                <!-- <div class="bg-white shadow p-4 rounded-md">
+                    <div class="flex justify-between items-center">
+                        <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full bg-[#00A96E] inline-block"></span><span>open</span></p>
+                        <p class="bg-[#FEECEC] text-[#EF4444] inline-block py-1 px-5 rounded-full font-medium text-sm">High</p>
+                    </div>
+                    <h2 class="text-sm font-semibold mt-3 leading-6 mb-2">Fix navigation menu on mobile devices</h2>
+                    <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                    <div class="mt-3 text-xs">
+                        <p class="bg-[#FEECEC] border border-[#FECACA] text-[#EF4444] inline-block py-1 px-2 rounded-full uppercase font-medium"><i class="fa-solid fa-bug"></i></i> Bug</p>
+                        <p class="bg-[#FFF8DB] border border-[#FDE68A] text-[#EF4444] inline-block py-1 px-2 rounded-full uppercase font-medium"><i class="fa-solid fa-life-ring"></i> help wanted</p>
+                    </div>
+                    <hr class="text-[#e4e4e7] border -mx-4 my-4">
+                    <div class="space-y-2 text-[#64748B] text-xs">
+                        <p>#1 by john_doe</p>
+                        <p>1/15/2024</p>
+                    </div>
+                </div> -->
             </div>
         </section>
     </main>
