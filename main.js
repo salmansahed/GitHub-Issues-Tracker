@@ -1,3 +1,5 @@
+let allIssuesData = [];
+
 const filterBtn = document.querySelectorAll('.filter-btn');
 
 filterBtn.forEach(btn => {
@@ -6,6 +8,16 @@ filterBtn.forEach(btn => {
             button.classList.remove('btn-primary');
         });
         btn.classList.add('btn-primary');
+
+        if(btn.id === 'all-btn'){
+            displayIssues(allIssuesData);
+        }else if(btn.id === 'open-btn'){
+            const openIssues = allIssuesData.filter(issue => issue.status === 'open');
+            displayIssues(openIssues);
+        }else if(btn.id === 'closed-btn'){
+            const closedIssues = allIssuesData.filter(issue => issue.status === 'closed');
+            displayIssues(closedIssues);
+        }
     });
 });
 
@@ -13,10 +25,10 @@ filterBtn.forEach(btn => {
 async function loadAllIssues() {
     const response = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await response.json();
+    allIssuesData = data.data;
     displayIssues(data.data);
 }
 loadAllIssues()
-
 
 
 const labelConfigs = {
@@ -82,7 +94,9 @@ function showModal(getData){
     document.getElementById('my_modal').showModal();
 }
 
+
 const issuesCardContainer = document.getElementById('issues-card-container');
+
 
 function displayIssues(issues){
     if (!issues) return;
