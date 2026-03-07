@@ -52,9 +52,9 @@
         </nav>
     </header>
 
-    <main class="max-w-11/12 md:max-w-11/12 lg:max-w-9/12 mx-auto mt-5 md:mt-8 lg:mt-[60px]">
+    <main class="md:max-w-11/12 lg:max-w-9/12 mx-auto mt-5 md:mt-8 lg:mt-[60px]">
         <!-- Issues Filtering Tab -->
-        <section class="bg-white shadow rounded-md p-2 md:p-4 lg:p-6 space-x-2 flex justify-between md:justify-start items-center">
+        <section class="bg-white shadow md:rounded-md p-2 md:p-4 lg:p-6 space-x-2 flex justify-around md:justify-start items-center">
             <button id="all-btn" class="filter-btn btn btn-primary w-[100px] md:w-[120px]">All</button>
             <button id="open-btn" class="filter-btn btn w-[100px] md:w-[120px]">Open</button>
             <button id="closed-btn" class="filter-btn btn w-[100px] md:w-[120px]">Closed</button>
@@ -62,20 +62,20 @@
 
         <!--  -->
         <section class="mt-4">
-            <div class="flex justify-between bg-white shadow p-6 rounded-t-md border-b-2 border-[#e4e4e7]">
-                <div class="flex items-center gap-2">
+            <div class="flex flex-col gap-4 md:flex-row justify-between bg-white shadow p-6 md:rounded-t-md border-b-2 border-[#e4e4e7]">
+                <div class="flex items-center gap-1 md:gap-2">
                     <div>
-                        <img class="bg-[#ECE4FF] p-[9px] rounded-full" src="./assets/Aperture.png" alt="Aperture">
+                        <img class="bg-[#ECE4FF] p-[9px] w-10/12 md:w-full rounded-full" src="./assets/Aperture.png" alt="Aperture">
                     </div>
                     <div>
-                        <h3 class="text-[20px] font-semibold"><span id="total-issues">0</span> Issues</h3>
-                        <p>Track and manage your project issues</p>
+                        <h3 class="text-base md:text-xl font-semibold"><span id="total-issues">0</span> Issues</h3>
+                        <p class="text-sm md:text-base text-[#64748B]">Track and manage your project issues</p>
                     </div>
                 </div>
 
-                <div class="flex gap-4 items-center">
-                    <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full bg-[#00A96E] inline-block"> </span><span>Open</span></p>
-                    <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full bg-[#A855F7] inline-block"></span> <span>Closed</span></p>
+                <div class="flex gap-4 items-center justify-end md:justify-start">
+                    <p class="flex items-center gap-2 font-medium"><span class="w-3.5 h-3.5 rounded-full bg-[#00A96E] inline-block"> </span><span>Open</span></p>
+                    <p class="flex items-center gap-2 font-medium"><span class="w-3.5 h-3.5 rounded-full bg-[#A855F7] inline-block"></span> <span>Closed</span></p>
                 </div>
             </div>
             <!-- Cards -->
