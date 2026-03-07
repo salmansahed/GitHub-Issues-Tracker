@@ -19,7 +19,6 @@ loadAllIssues()
 
 
 
-
 const labelConfigs = {
     "bug": {
         color: "bg-[#FEECEC] border-[#FECACA] text-[#EF4444]",
@@ -43,7 +42,45 @@ const labelConfigs = {
     }
 };
 
+async function issuesCardModal(id){
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    showModal(data.data)
+}
 
+function showModal(getData){
+    const modalContainer = document.getElementById('modal-container');
+    const dotColors = getData.status === 'open' ? 'bg-[#00A96E]' : 'bg-[#8b5cf6]';
+    modalContainer.innerHTML = `
+        <h2 class="text-xl md:text-2xl font-bold mb-2">${getData.title}</h2>
+        <div class="flex items-center gap-2 mb-6">
+            <p class="${dotColors} text-xs px-2 py-1 rounded-full text-white inline-block capitalize">${getData.status}</p>
+            <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+            <p class="text-xs text-[#64748B]">${getData.author}</p>
+            <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+            <p class="text-xs text-[#64748B]">${new Date(getData.createdAt).toLocaleDateString()}</p>
+        </div>
+        <div class="flex items-center gap-2 mb-6 text-xs">
+            ${getData.labels.map(labelName => {
+                        const config = labelConfigs[labelName.toLowerCase()];
+                        return `<p class="${config.color} border inline-block py-1 px-2 rounded-full uppercase font-medium"><i class="fa-solid ${config.icon}"></i> ${labelName}</p>`;
+                    }).join('')}
+        </div>
+        <p class="text-[#64748B] mb-6">${getData.description}</p>
+        <div class="bg-[#f8fafc] flex items-center justify-between p-4 rounded-md">
+            <div class="w-full">
+                <p class="text-[#64748B]">Assignee:</p>
+                <p class="font-semibold">${getData.assignee}</p>
+            </div>
+            <div class="w-full">
+                <p class="text-[#64748B]">Priority:</p>
+                <p class="text-xs bg-[#EF4444] inline-block text-white px-3 py-1 rounded-full uppercase">${getData.priority}</p>
+            </div>
+        </div>
+    `;
+    document.getElementById('my_modal').showModal();
+}
 
 const issuesCardContainer = document.getElementById('issues-card-container');
 
@@ -58,9 +95,9 @@ function displayIssues(issues){
         const isOpen = issue.status === 'open';
         const topBorder = isOpen ? 'border-t-[#00A96E]' : 'border-t-[#8b5cf6]';
         div.innerHTML = `
-            <div class="bg-white shadow p-4 rounded-md h-full border-t-4 ${topBorder}">
+            <div onclick="issuesCardModal(${issue.id})" class="bg-white shadow p-4 rounded-md h-full border-t-4 ${topBorder}">
                 <div class="flex justify-between items-center">
-                    <p class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-full ${dotColor} inline-block"></span><span>${issue.status}</span></p>
+                    <p class="flex items-center gap-2 capitalize"><span class="w-3.5 h-3.5 rounded-full ${dotColor} inline-block"></span><span>${issue.status}</span></p>
                     <p class="${priorityColor} inline-block py-1 px-5 rounded-full font-medium text-sm uppercase">${issue.priority}</p>
                 </div>
                 <h2 class="text-sm font-semibold mt-3 leading-6 mb-2">${issue.title}</h2>
