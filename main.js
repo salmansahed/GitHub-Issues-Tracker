@@ -35,17 +35,15 @@ searchInput.addEventListener('input', async (e) => {
     filterBtn.forEach(button => button.classList.remove('btn-primary'));
     allBtn.classList.add('btn-primary');
 
-    const response = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
-    const data = await response.json();
-    const allData = data.data;
-
-    const filteredIssues = allData.filter(issue => 
-        issue.title.toLowerCase().includes(searchText) || 
-        issue.description.toLowerCase().includes(searchText)
-    );
-
-    displayIssues(filteredIssues);
+    if (searchText.length > 0) {
+        const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
+        const data = await response.json();
+        displayIssues(data.data);
+    } else {
+        loadAllIssues(); 
+    }
 });
+
 
 // Loading Spinner
 const manageSpinner = (status) => {
