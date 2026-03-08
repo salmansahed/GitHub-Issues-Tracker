@@ -1,35 +1,53 @@
-let allIssuesData = [];
-
 const filterBtn = document.querySelectorAll('.filter-btn');
 
 filterBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtn.forEach(button => {
-            button.classList.remove('btn-primary');
-        });
+    btn.addEventListener('click', async () => {
+        filterBtn.forEach(button => button.classList.remove('btn-primary'));
         btn.classList.add('btn-primary');
 
-        if(btn.id === 'all-btn'){
-            displayIssues(allIssuesData);
-        }else if(btn.id === 'open-btn'){
-            const openIssues = allIssuesData.filter(issue => issue.status === 'open');
-            displayIssues(openIssues);
-        }else if(btn.id === 'closed-btn'){
-            const closedIssues = allIssuesData.filter(issue => issue.status === 'closed');
-            displayIssues(closedIssues);
-        }
+        manageSpinner(true);
+
+            const response = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
+            const data = await response.json();
+            const allData = data.data;
+
+            if(btn.id === 'all-btn'){
+                displayIssues(allData);
+            } else if(btn.id === 'open-btn'){
+                const openIssues = allData.filter(issue => issue.status === 'open');
+                displayIssues(openIssues);
+            } else if(btn.id === 'closed-btn'){
+                const closedIssues = allData.filter(issue => issue.status === 'closed');
+                displayIssues(closedIssues);
+            }
+            manageSpinner(false);
     });
 });
 
 
+
+// Loading Spinner
+const manageSpinner = (status) => {
+    if(status === true){
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('issues-card-container').classList.add('hidden');
+    }else{
+            document.getElementById('spinner').classList.add('hidden');
+            document.getElementById('issues-card-container').classList.remove('hidden');
+
+    }
+}
+
+
+
 async function loadAllIssues() {
+    manageSpinner(true);
     const response = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await response.json();
-    allIssuesData = data.data;
     displayIssues(data.data);
+    manageSpinner(false);
 }
 loadAllIssues()
-
 
 const labelConfigs = {
     "bug": {
